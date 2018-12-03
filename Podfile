@@ -10,6 +10,7 @@ target 'MVx' do
   pod 'ReSwift'
   pod 'RxOptional'
   pod 'Moya/RxSwift'
+  pod 'GCDWebServer'
   target 'MVxTests' do
     inherit! :search_paths
     # Pods for testing
