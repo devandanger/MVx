@@ -1,5 +1,5 @@
 //
-//  BindingExamplesViewController.swift
+//  BindingExamplesViewModel.swift
 //  MVx
 //
 //  Created by Evan Anger on 12/3/18.
@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import UIKit
 
-class BindingExamplesViewController: UIViewController {
-
+class BindingExamplesViewModel {
+    
 }
-

@@ -13,6 +13,10 @@
 		200FA23221B4FDE4007975E0 /* ImperativeReactiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */; };
 		200FA23521B502C4007975E0 /* Binding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200FA23421B502C4007975E0 /* Binding.storyboard */; };
 		200FA23721B5062F007975E0 /* Dangling.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200FA23621B5062F007975E0 /* Dangling.storyboard */; };
+		20203EF621B50E300083D700 /* BindingExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203EF521B50E300083D700 /* BindingExamplesViewModel.swift */; };
+		20203EF821B50E3F0083D700 /* DanglingSignalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203EF721B50E3F0083D700 /* DanglingSignalViewModel.swift */; };
+		20203EFA21B50E4C0083D700 /* CaptureClosureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203EF921B50E4C0083D700 /* CaptureClosureViewModel.swift */; };
+		20203EFC21B50E570083D700 /* ImperativeReactiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */; };
 		202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503B21B41B9800483DCA /* AppDelegate.swift */; };
 		202D503E21B41B9800483DCA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503D21B41B9800483DCA /* MasterViewController.swift */; };
 		202D504321B41B9800483DCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202D504121B41B9800483DCA /* Main.storyboard */; };
@@ -51,6 +55,10 @@
 		200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperativeReactiveViewController.swift; sourceTree = "<group>"; };
 		200FA23421B502C4007975E0 /* Binding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Binding.storyboard; sourceTree = "<group>"; };
 		200FA23621B5062F007975E0 /* Dangling.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dangling.storyboard; sourceTree = "<group>"; };
+		20203EF521B50E300083D700 /* BindingExamplesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExamplesViewModel.swift; sourceTree = "<group>"; };
+		20203EF721B50E3F0083D700 /* DanglingSignalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanglingSignalViewModel.swift; sourceTree = "<group>"; };
+		20203EF921B50E4C0083D700 /* CaptureClosureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureClosureViewModel.swift; sourceTree = "<group>"; };
+		20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperativeReactiveViewModel.swift; sourceTree = "<group>"; };
 		202D503821B41B9800483DCA /* MVx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202D503B21B41B9800483DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		202D503D21B41B9800483DCA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -120,9 +128,13 @@
 			isa = PBXGroup;
 			children = (
 				200FA22B21B4FD52007975E0 /* BindingExamplesViewController.swift */,
-				200FA22D21B4FD91007975E0 /* DanglingSignalViewController.swift */,
+				20203EF521B50E300083D700 /* BindingExamplesViewModel.swift */,
 				200FA22F21B4FDB7007975E0 /* CaptureClosureViewController.swift */,
+				20203EF921B50E4C0083D700 /* CaptureClosureViewModel.swift */,
+				200FA22D21B4FD91007975E0 /* DanglingSignalViewController.swift */,
+				20203EF721B50E3F0083D700 /* DanglingSignalViewModel.swift */,
 				200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */,
+				20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -439,12 +451,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				200FA22E21B4FD91007975E0 /* DanglingSignalViewController.swift in Sources */,
+				20203EFA21B50E4C0083D700 /* CaptureClosureViewModel.swift in Sources */,
 				200FA23221B4FDE4007975E0 /* ImperativeReactiveViewController.swift in Sources */,
 				200FA22C21B4FD52007975E0 /* BindingExamplesViewController.swift in Sources */,
 				202D503E21B41B9800483DCA /* MasterViewController.swift in Sources */,
+				20203EF821B50E3F0083D700 /* DanglingSignalViewModel.swift in Sources */,
 				200FA23021B4FDB7007975E0 /* CaptureClosureViewController.swift in Sources */,
 				202D506D21B41D9900483DCA /* ExampleDirectory.swift in Sources */,
+				20203EFC21B50E570083D700 /* ImperativeReactiveViewModel.swift in Sources */,
 				202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */,
+				20203EF621B50E300083D700 /* BindingExamplesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
