@@ -12,6 +12,7 @@
 		200FA23021B4FDB7007975E0 /* CaptureClosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FA22F21B4FDB7007975E0 /* CaptureClosureViewController.swift */; };
 		200FA23221B4FDE4007975E0 /* ImperativeReactiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */; };
 		200FA23521B502C4007975E0 /* Binding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200FA23421B502C4007975E0 /* Binding.storyboard */; };
+		200FA23721B5062F007975E0 /* Dangling.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200FA23621B5062F007975E0 /* Dangling.storyboard */; };
 		202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503B21B41B9800483DCA /* AppDelegate.swift */; };
 		202D503E21B41B9800483DCA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503D21B41B9800483DCA /* MasterViewController.swift */; };
 		202D504321B41B9800483DCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202D504121B41B9800483DCA /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		200FA22F21B4FDB7007975E0 /* CaptureClosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureClosureViewController.swift; sourceTree = "<group>"; };
 		200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperativeReactiveViewController.swift; sourceTree = "<group>"; };
 		200FA23421B502C4007975E0 /* Binding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Binding.storyboard; sourceTree = "<group>"; };
+		200FA23621B5062F007975E0 /* Dangling.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dangling.storyboard; sourceTree = "<group>"; };
 		202D503821B41B9800483DCA /* MVx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202D503B21B41B9800483DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		202D503D21B41B9800483DCA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				200FA23421B502C4007975E0 /* Binding.storyboard */,
+				200FA23621B5062F007975E0 /* Dangling.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			files = (
 				200FA23521B502C4007975E0 /* Binding.storyboard in Resources */,
 				202D504821B41B9A00483DCA /* LaunchScreen.storyboard in Resources */,
+				200FA23721B5062F007975E0 /* Dangling.storyboard in Resources */,
 				202D504521B41B9A00483DCA /* Assets.xcassets in Resources */,
 				202D504321B41B9800483DCA /* Main.storyboard in Resources */,
 			);
@@ -382,16 +386,24 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MVx/Pods-MVx-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
