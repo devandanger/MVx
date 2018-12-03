@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import Moya
 
 class BindingExamplesViewModel {
-    
+    let provider: MoyaProvider<PeopleApi>
+    init(provider theProvider: MoyaProvider<PeopleApi>) {
+        provider = theProvider
+    }
 }

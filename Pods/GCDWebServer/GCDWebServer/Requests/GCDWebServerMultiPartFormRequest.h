@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -26,8 +26,6 @@
  */
 
 #import "GCDWebServerRequest.h"
-
-NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  The GCDWebServerMultiPart class is an abstract class that wraps the content
@@ -71,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  The text encoding used to interpret the data is extracted from the
  *  "Content-Type" header or defaults to UTF-8.
  */
-@property(nonatomic, readonly, nullable) NSString* string;
+@property(nonatomic, readonly) NSString* string;
 
 @end
 
@@ -124,13 +122,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Returns the first argument for a given control name or nil if not found.
  */
-- (nullable GCDWebServerMultiPartArgument*)firstArgumentForControlName:(NSString*)name;
+- (GCDWebServerMultiPartArgument*)firstArgumentForControlName:(NSString*)name;
 
 /**
  *  Returns the first file for a given control name or nil if not found.
  */
-- (nullable GCDWebServerMultiPartFile*)firstFileForControlName:(NSString*)name;
+- (GCDWebServerMultiPartFile*)firstFileForControlName:(NSString*)name;
 
 @end
-
-NS_ASSUME_NONNULL_END

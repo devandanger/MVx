@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -25,19 +25,27 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !__has_feature(objc_arc)
-#error GCDWebServer requires ARC
-#endif
-
 #import "GCDWebServerPrivate.h"
 
-@interface GCDWebServerDataRequest ()
-@property(nonatomic) NSMutableData* data;
-@end
-
-@implementation GCDWebServerDataRequest {
+@interface GCDWebServerDataRequest () {
+@private
+  NSMutableData* _data;
+  
   NSString* _text;
   id _jsonObject;
+}
+@end
+
+@implementation GCDWebServerDataRequest
+
+@synthesize data=_data;
+
+- (void)dealloc {
+  ARC_RELEASE(_data);
+  ARC_RELEASE(_text);
+  ARC_RELEASE(_jsonObject);
+  
+  ARC_DEALLOC(super);
 }
 
 - (BOOL)open:(NSError**)error {
@@ -47,9 +55,7 @@
     _data = [[NSMutableData alloc] init];
   }
   if (_data == nil) {
-    if (error) {
-      *error = [NSError errorWithDomain:kGCDWebServerErrorDomain code:-1 userInfo:@{ NSLocalizedDescriptionKey : @"Failed allocating memory" }];
-    }
+    *error = [NSError errorWithDomain:kGCDWebServerErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Failed allocating memory"}];
     return NO;
   }
   return YES;
@@ -68,7 +74,7 @@
   NSMutableString* description = [NSMutableString stringWithString:[super description]];
   if (_data) {
     [description appendString:@"\n\n"];
-    [description appendString:GCDWebServerDescribeData(_data, (NSString*)self.contentType)];
+    [description appendString:GCDWebServerDescribeData(_data, self.contentType)];
   }
   return description;
 }
@@ -83,7 +89,7 @@
       NSString* charset = GCDWebServerExtractHeaderValueParameter(self.contentType, @"charset");
       _text = [[NSString alloc] initWithData:self.data encoding:GCDWebServerStringEncodingFromCharset(charset)];
     } else {
-      GWS_DNOT_REACHED();
+      DNOT_REACHED();
     }
   }
   return _text;
@@ -93,9 +99,9 @@
   if (_jsonObject == nil) {
     NSString* mimeType = GCDWebServerTruncateHeaderValue(self.contentType);
     if ([mimeType isEqualToString:@"application/json"] || [mimeType isEqualToString:@"text/json"] || [mimeType isEqualToString:@"text/javascript"]) {
-      _jsonObject = [NSJSONSerialization JSONObjectWithData:_data options:0 error:NULL];
+      _jsonObject = ARC_RETAIN([NSJSONSerialization JSONObjectWithData:_data options:0 error:NULL]);
     } else {
-      GWS_DNOT_REACHED();
+      DNOT_REACHED();
     }
   }
   return _jsonObject;

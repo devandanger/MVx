@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -25,26 +25,39 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !__has_feature(objc_arc)
-#error GCDWebServer requires ARC
-#endif
-
 #import "GCDWebServerPrivate.h"
+
+@interface GCDWebServerURLEncodedFormRequest () {
+@private
+  NSDictionary* _arguments;
+}
+@end
 
 @implementation GCDWebServerURLEncodedFormRequest
 
+@synthesize arguments=_arguments;
+
 + (NSString*)mimeType {
   return @"application/x-www-form-urlencoded";
+}
+
+- (void)dealloc {
+  ARC_RELEASE(_arguments);
+  
+  ARC_DEALLOC(super);
 }
 
 - (BOOL)close:(NSError**)error {
   if (![super close:error]) {
     return NO;
   }
-
+  
   NSString* charset = GCDWebServerExtractHeaderValueParameter(self.contentType, @"charset");
   NSString* string = [[NSString alloc] initWithData:self.data encoding:GCDWebServerStringEncodingFromCharset(charset)];
-  _arguments = GCDWebServerParseURLEncodedForm(string);
+  _arguments = ARC_RETAIN(GCDWebServerParseURLEncodedForm(string));
+  DCHECK(_arguments);
+  ARC_RELEASE(string);
+  
   return YES;
 }
 

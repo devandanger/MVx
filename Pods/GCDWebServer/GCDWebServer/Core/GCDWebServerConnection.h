@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,6 @@
 
 #import "GCDWebServer.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @class GCDWebServerHandler;
 
 /**
@@ -51,11 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) GCDWebServer* server;
 
 /**
- *  Returns YES if the connection is using IPv6.
- */
-@property(nonatomic, readonly, getter=isUsingIPv6) BOOL usingIPv6;
-
-/**
  *  Returns the address of the local peer (i.e. server) of the connection
  *  as a raw "struct sockaddr".
  */
@@ -63,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Returns the address of the local peer (i.e. server) of the connection
- *  as a string.
+ *  as a dotted string.
  */
 @property(nonatomic, readonly) NSString* localAddressString;
 
@@ -75,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Returns the address of the remote peer (i.e. client) of the connection
- *  as a string.
+ *  as a dotted string.
  */
 @property(nonatomic, readonly) NSString* remoteAddressString;
 
@@ -141,18 +134,17 @@ NS_ASSUME_NONNULL_BEGIN
  *  The default implementation checks for HTTP authentication if applicable
  *  and returns a barebone 401 status code response if authentication failed.
  */
-- (nullable GCDWebServerResponse*)preflightRequest:(GCDWebServerRequest*)request;
+- (GCDWebServerResponse*)preflightRequest:(GCDWebServerRequest*)request;
 
 /**
  *  Assuming a valid HTTP request was received and -preflightRequest: returned nil,
- *  this method is called to process the request by executing the handler's
- *  process block.
+ *  this method is called to process the request.
  */
-- (void)processRequest:(GCDWebServerRequest*)request completion:(GCDWebServerCompletionBlock)completion;
+- (GCDWebServerResponse*)processRequest:(GCDWebServerRequest*)request withBlock:(GCDWebServerProcessBlock)block;
 
 /**
  *  Assuming a valid HTTP request was received and either -preflightRequest:
- *  or -processRequest:completion: returned a non-nil GCDWebServerResponse,
+ *  or -processRequest:withBlock: returned a non-nil GCDWebServerResponse,
  *  this method is called to override the response.
  *
  *  You can either modify the current response and return it, or return a
@@ -171,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @warning If the request was invalid (e.g. the HTTP headers were malformed),
  *  the "request" argument will be nil.
  */
-- (void)abortRequest:(nullable GCDWebServerRequest*)request withStatusCode:(NSInteger)statusCode;
+- (void)abortRequest:(GCDWebServerRequest*)request withStatusCode:(NSInteger)statusCode;
 
 /**
  *  Called when the connection is closed.
@@ -179,5 +171,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)close;
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -25,31 +25,41 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !__has_feature(objc_arc)
-#error GCDWebServer requires ARC
-#endif
-
 #import "GCDWebServerPrivate.h"
 
-@implementation GCDWebServerDataResponse {
+@interface GCDWebServerDataResponse () {
+@private
   NSData* _data;
   BOOL _done;
 }
+@end
 
-@dynamic contentType;
+@implementation GCDWebServerDataResponse
 
 + (instancetype)responseWithData:(NSData*)data contentType:(NSString*)type {
-  return [[[self class] alloc] initWithData:data contentType:type];
+  return ARC_AUTORELEASE([[[self class] alloc] initWithData:data contentType:type]);
 }
 
 - (instancetype)initWithData:(NSData*)data contentType:(NSString*)type {
+  if (data == nil) {
+    DNOT_REACHED();
+    ARC_RELEASE(self);
+    return nil;
+  }
+  
   if ((self = [super init])) {
-    _data = data;
-
+    _data = ARC_RETAIN(data);
+    
     self.contentType = type;
     self.contentLength = data.length;
   }
   return self;
+}
+
+- (void)dealloc {
+  ARC_RELEASE(_data);
+  
+  ARC_DEALLOC(super);
 }
 
 - (NSData*)readData:(NSError**)error {
@@ -75,29 +85,30 @@
 @implementation GCDWebServerDataResponse (Extensions)
 
 + (instancetype)responseWithText:(NSString*)text {
-  return [[self alloc] initWithText:text];
+  return ARC_AUTORELEASE([[self alloc] initWithText:text]);
 }
 
 + (instancetype)responseWithHTML:(NSString*)html {
-  return [[self alloc] initWithHTML:html];
+  return ARC_AUTORELEASE([[self alloc] initWithHTML:html]);
 }
 
 + (instancetype)responseWithHTMLTemplate:(NSString*)path variables:(NSDictionary*)variables {
-  return [[self alloc] initWithHTMLTemplate:path variables:variables];
+  return ARC_AUTORELEASE([[self alloc] initWithHTMLTemplate:path variables:variables]);
 }
 
 + (instancetype)responseWithJSONObject:(id)object {
-  return [[self alloc] initWithJSONObject:object];
+  return ARC_AUTORELEASE([[self alloc] initWithJSONObject:object]);
 }
 
 + (instancetype)responseWithJSONObject:(id)object contentType:(NSString*)type {
-  return [[self alloc] initWithJSONObject:object contentType:type];
+  return ARC_AUTORELEASE([[self alloc] initWithJSONObject:object contentType:type]);
 }
 
 - (instancetype)initWithText:(NSString*)text {
   NSData* data = [text dataUsingEncoding:NSUTF8StringEncoding];
   if (data == nil) {
-    GWS_DNOT_REACHED();
+    DNOT_REACHED();
+    ARC_RELEASE(self);
     return nil;
   }
   return [self initWithData:data contentType:@"text/plain; charset=utf-8"];
@@ -106,7 +117,8 @@
 - (instancetype)initWithHTML:(NSString*)html {
   NSData* data = [html dataUsingEncoding:NSUTF8StringEncoding];
   if (data == nil) {
-    GWS_DNOT_REACHED();
+    DNOT_REACHED();
+    ARC_RELEASE(self);
     return nil;
   }
   return [self initWithData:data contentType:@"text/html; charset=utf-8"];
@@ -117,7 +129,9 @@
   [variables enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSString* value, BOOL* stop) {
     [html replaceOccurrencesOfString:[NSString stringWithFormat:@"%%%@%%", key] withString:value options:0 range:NSMakeRange(0, html.length)];
   }];
-  return [self initWithHTML:html];
+  id response = [self initWithHTML:html];
+  ARC_RELEASE(html);
+  return response;
 }
 
 - (instancetype)initWithJSONObject:(id)object {
@@ -127,7 +141,7 @@
 - (instancetype)initWithJSONObject:(id)object contentType:(NSString*)type {
   NSData* data = [NSJSONSerialization dataWithJSONObject:object options:0 error:NULL];
   if (data == nil) {
-    GWS_DNOT_REACHED();
+    ARC_RELEASE(self);
     return nil;
   }
   return [self initWithData:data contentType:type];

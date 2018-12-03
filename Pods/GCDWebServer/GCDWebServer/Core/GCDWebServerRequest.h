@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -26,8 +26,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Attribute key to retrieve an NSArray containing NSStrings from a GCDWebServerRequest
@@ -114,7 +112,7 @@ extern NSString* const GCDWebServerRequestAttribute_RegexCaptures;
  *
  *  @warning This property will be nil if there is no query in the URL.
  */
-@property(nonatomic, readonly, nullable) NSDictionary* query;
+@property(nonatomic, readonly) NSDictionary* query;
 
 /**
  *  Returns the content type for the body of the request parsed from the
@@ -124,7 +122,7 @@ extern NSString* const GCDWebServerRequestAttribute_RegexCaptures;
  *  "application/octet-stream" if a body is present but there was no
  *  "Content-Type" header.
  */
-@property(nonatomic, readonly, nullable) NSString* contentType;
+@property(nonatomic, readonly) NSString* contentType;
 
 /**
  *  Returns the content length for the body of the request parsed from the
@@ -139,12 +137,12 @@ extern NSString* const GCDWebServerRequestAttribute_RegexCaptures;
 /**
  *  Returns the parsed "If-Modified-Since" header or nil if absent or malformed.
  */
-@property(nonatomic, readonly, nullable) NSDate* ifModifiedSince;
+@property(nonatomic, readonly) NSDate* ifModifiedSince;
 
 /**
  *  Returns the parsed "If-None-Match" header or nil if absent or malformed.
  */
-@property(nonatomic, readonly, nullable) NSString* ifNoneMatch;
+@property(nonatomic, readonly) NSString* ifNoneMatch;
 
 /**
  *  Returns the parsed "Range" header or (NSUIntegerMax, 0) if absent or malformed.
@@ -160,33 +158,9 @@ extern NSString* const GCDWebServerRequestAttribute_RegexCaptures;
 @property(nonatomic, readonly) BOOL acceptsGzipContentEncoding;
 
 /**
- *  Returns the address of the local peer (i.e. server) for the request
- *  as a raw "struct sockaddr".
- */
-@property(nonatomic, readonly) NSData* localAddressData;
-
-/**
- *  Returns the address of the local peer (i.e. server) for the request
- *  as a string.
- */
-@property(nonatomic, readonly) NSString* localAddressString;
-
-/**
- *  Returns the address of the remote peer (i.e. client) for the request
- *  as a raw "struct sockaddr".
- */
-@property(nonatomic, readonly) NSData* remoteAddressData;
-
-/**
- *  Returns the address of the remote peer (i.e. client) for the request
- *  as a string.
- */
-@property(nonatomic, readonly) NSString* remoteAddressString;
-
-/**
  *  This method is the designated initializer for the class.
  */
-- (instancetype)initWithMethod:(NSString*)method url:(NSURL*)url headers:(NSDictionary*)headers path:(NSString*)path query:(nullable NSDictionary*)query;
+- (instancetype)initWithMethod:(NSString*)method url:(NSURL*)url headers:(NSDictionary*)headers path:(NSString*)path query:(NSDictionary*)query;
 
 /**
  *  Convenience method that checks if the contentType property is defined.
@@ -203,8 +177,6 @@ extern NSString* const GCDWebServerRequestAttribute_RegexCaptures;
  *
  *  @return The attribute value for the key.
  */
-- (nullable id)attributeForKey:(NSString*)key;
+- (id)attributeForKey:(NSString*)key;
 
 @end
-
-NS_ASSUME_NONNULL_END

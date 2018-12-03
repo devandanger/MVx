@@ -3,8 +3,7 @@ Overview
 
 [![Build Status](https://travis-ci.org/swisspol/GCDWebServer.svg?branch=master)](https://travis-ci.org/swisspol/GCDWebServer)
 [![Version](http://cocoapod-badges.herokuapp.com/v/GCDWebServer/badge.png)](http://cocoadocs.org/docsets/GCDWebServer)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/GCDWebServer/badge.png)](https://github.com/swisspol/GCDWebServer)
-[![License](http://img.shields.io/cocoapods/l/GCDWebServer.svg)](LICENSE)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/GCDWebServer/badge.png)](http://cocoadocs.org/docsets/GCDWebServer)
 
 GCDWebServer is a modern and lightweight GCD based HTTP 1.1 server designed to be embedded in OS X & iOS apps. It was written from scratch with the following goals in mind:
 * Elegant and easy to use architecture with only 4 core classes: server, connection, request and response (see "Understanding GCDWebServer's Architecture" below)
@@ -14,7 +13,6 @@ GCDWebServer is a modern and lightweight GCD based HTTP 1.1 server designed to b
 * Available under a friendly [New BSD License](LICENSE)
 
 Extra built-in features:
-* Allow implementation of fully asynchronous handlers of incoming HTTP requests
 * Minimize memory usage with disk streaming of large HTTP request or response bodies
 * Parser for [web forms](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4) submitted using "application/x-www-form-urlencoded" or "multipart/form-data" encodings (including file uploads)
 * [JSON](http://www.json.org/) parsing and serialization for request and response HTTP bodies
@@ -23,8 +21,6 @@ Extra built-in features:
 * [HTTP range](https://en.wikipedia.org/wiki/Byte_serving) support for requests of local files
 * [Basic](https://en.wikipedia.org/wiki/Basic_access_authentication) and [Digest Access](https://en.wikipedia.org/wiki/Digest_access_authentication) authentications for password protection
 * Automatically handle transitions between foreground, background and suspended modes in iOS apps
-* Full support for both IPv4 and IPv6
-* NAT port mapping (IPv4 only)
 
 Included extensions:
 * [GCDWebUploader](GCDWebUploader/GCDWebUploader.h): subclass of ```GCDWebServer``` that implements an interface for uploading and downloading files using a web browser
@@ -36,51 +32,30 @@ What's not supported (but not really required from an embedded HTTP server):
 
 Requirements:
 * OS X 10.7 or later (x86_64)
-* iOS 8.0 or later (armv7, armv7s or arm64)
-* ARC memory management only (if you need MRC support use GCDWebServer 3.1 and earlier)
+* iOS 5.0 or later (armv7, armv7s or arm64)
 
 Getting Started
 ===============
 
 Download or check out the [latest release](https://github.com/swisspol/GCDWebServer/releases) of GCDWebServer then add the entire "GCDWebServer" subfolder to your Xcode project. If you intend to use one of the extensions like GCDWebDAVServer or GCDWebUploader, add these subfolders as well.
 
-If you add the files directly then (1) link to `libz` (via Target > Build Phases > Link Binary With Libraries) and (2) add `$(SDKROOT)/usr/include/libxml2` to your header search paths (via Target > Build Settings > HEADER_SEARCH_PATHS).
-
-Alternatively, you can install GCDWebServer using [CocoaPods](http://cocoapods.org/) by simply adding this line to your Podfile:
+Alternatively, you can install GCDWebServer using [CocoaPods](http://cocoapods.org/) by simply adding this line to your Xcode project's Podfile:
 ```
-pod "GCDWebServer", "~> 3.0"
+pod "GCDWebServer", "~> 2.0"
 ```
 If you want to use GCDWebUploader, use this line instead:
 ```
-pod "GCDWebServer/WebUploader", "~> 3.0"
+pod "GCDWebServer/WebUploader", "~> 2.0"
 ```
 Or this line for GCDWebDAVServer:
 ```
-pod "GCDWebServer/WebDAV", "~> 3.0"
+pod "GCDWebServer/WebDAV", "~> 2.0"
 ```
-
-And finally run `$ pod install`.
-
-You can also use [Carthage](https://github.com/Carthage/Carthage) by adding this line to your Cartfile (3.2.5 is the first release with Carthage support):
-```
-github "swisspol/GCDWebServer" ~> 3.2.5
-```
-
-Then run `$ carthage update` and add the generated frameworks to your Xcode projects (see [Carthage instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)).
-
-Help & Support
-==============
-
-For help with using GCDWebServer, it's best to ask your question on Stack Overflow with the [`gcdwebserver`](http://stackoverflow.com/questions/tagged/gcdwebserver) tag. For bug reports and enhancement requests you can use [issues](https://github.com/swisspol/GCDWebServer/issues) in this project.
-
-Be sure to read this entire README first though!
 
 Hello World
 ===========
 
 These code snippets show how to implement a custom HTTP server that runs on port 8080 and returns a "Hello World" HTML page to any request. Since GCDWebServer uses GCD blocks to handle requests, no subclassing or delegates are needed, which results in very clean code.
-
-**IMPORTANT:** If not using CocoaPods, be sure to add the `libz` shared system library to the Xcode target for your app.
 
 **OS X version (command line tool):**
 ```objectivec
@@ -153,27 +128,22 @@ int main(int argc, const char* argv[]) {
 ***webServer.swift***
 ```swift
 import Foundation
-import GCDWebServer
 
-func initWebServer() {
+let webServer = GCDWebServer()
 
-    let webServer = GCDWebServer()
-
-    webServer.addDefaultHandlerForMethod("GET", requestClass: GCDWebServerRequest.self, processBlock: {request in
+webServer.addDefaultHandlerForMethod("GET", requestClass: GCDWebServerRequest.self) { request in
     return GCDWebServerDataResponse(HTML:"<html><body><p>Hello World</p></body></html>")
-        
-    })
-    
-    webServer.runWithPort(8080, bonjourName: "GCD Web Server")
-    
-    print("Visit \(webServer.serverURL) in your web browser")
 }
+
+webServer.runWithPort(8080, bonjourName: nil)
+
+println("Visit \(webServer.serverURL) in your web browser")
 ```
 
 ***WebServer-Bridging-Header.h***
 ```objectivec
-#import <GCDWebServer/GCDWebServer.h>
-#import <GCDWebServer/GCDWebServerDataResponse.h>
+#import "GCDWebServer.h"
+#import "GCDWebServerDataResponse.h"
 ```
 
 Web Based Uploads in iOS Apps
@@ -239,7 +209,6 @@ Serving a Static Website
 
 GCDWebServer includes a built-in handler that can recursively serve a directory (it also lets you control how the ["Cache-Control"](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) header should be set):
 
-**OS X version (command line tool):**
 ```objectivec
 #import "GCDWebServer.h"
 
@@ -276,73 +245,13 @@ GCDWebServer's architecture consists of only 4 core classes:
 Implementing Handlers
 =====================
 
-GCDWebServer relies on "handlers" to process incoming web requests and generating responses. Handlers are implemented with GCD blocks which makes it very easy to provide your own. However, they are executed on arbitrary threads within GCD so __special attention must be paid to thread-safety and re-entrancy__.
+GCDWebServer relies on "handlers" to process incoming web requests and generating responses. Handlers are implemented with GCD blocks which makes it very easy to provide your owns. However, they are executed on arbitrary threads within GCD so __special attention must be paid to thread-safety and re-entrancy__.
 
 Handlers require 2 GCD blocks:
 * The ```GCDWebServerMatchBlock``` is called on every handler added to the ```GCDWebServer``` instance whenever a web request has started (i.e. HTTP headers have been received). It is passed the basic info for the web request (HTTP method, URL, headers...) and must decide if it wants to handle it or not. If yes, it must return a new ```GCDWebServerRequest``` instance (see above) created with this info. Otherwise, it simply returns nil.
-* The ```GCDWebServerProcessBlock``` or ```GCDWebServerAsyncProcessBlock``` is called after the web request has been fully received and is passed the ```GCDWebServerRequest``` instance created at the previous step. It must return synchronously (if using ```GCDWebServerProcessBlock```) or asynchronously (if using ```GCDWebServerAsyncProcessBlock```) a ```GCDWebServerResponse``` instance (see above) or nil on error, which will result in a 500 HTTP status code returned to the client. It's however recommended to return an instance of [GCDWebServerErrorResponse](GCDWebServer/Responses/GCDWebServerErrorResponse.h) on error so more useful information can be returned to the client.
+* The ```GCDWebServerProcessBlock``` is called after the web request has been fully received and is passed the ```GCDWebServerRequest``` instance created at the previous step. It must return a ```GCDWebServerResponse``` instance (see above) or nil on error, which will result in a 500 HTTP status code returned to the client. It's however recommended to return an instance of [GCDWebServerErrorResponse](GCDWebServer/Responses/GCDWebServerErrorResponse.h) on error so more useful information can be returned to the client.
 
-Note that most methods on ```GCDWebServer``` to add handlers only require the ```GCDWebServerProcessBlock``` or ```GCDWebServerAsyncProcessBlock``` as they already provide a built-in ```GCDWebServerMatchBlock``` e.g. to match a URL path with a Regex.
-
-Asynchronous HTTP Responses
-===========================
-
-New in GCDWebServer 3.0 is the ability to process HTTP requests asynchronously i.e. add handlers to the server which generate their ```GCDWebServerResponse``` asynchronously. This is achieved by adding handlers that use a ```GCDWebServerAsyncProcessBlock``` instead of a ```GCDWebServerProcessBlock```. Here's an example:
-
-**(Synchronous version)** The handler blocks while generating the HTTP response:
-```objectivec
-[webServer addDefaultHandlerForMethod:@"GET"
-                         requestClass:[GCDWebServerRequest class]
-                         processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-  
-  GCDWebServerDataResponse* response = [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
-  return response;
-  
-}];
-```
-
-**(Asynchronous version)** The handler returns immediately and calls back GCDWebServer later with the generated HTTP response:
-```objectivec
-[webServer addDefaultHandlerForMethod:@"GET"
-                         requestClass:[GCDWebServerRequest class]
-                    asyncProcessBlock:^(GCDWebServerRequest* request, GCDWebServerCompletionBlock completionBlock) {
-  
-  // Do some async operation like network access or file I/O (simulated here using dispatch_after())
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    GCDWebServerDataResponse* response = [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
-    completionBlock(response);
-  });
-
-}];
-```
-
-**(Advanced asynchronous version)** The handler returns immediately a streamed HTTP response which itself generates its contents asynchronously:
-```objectivec
-[webServer addDefaultHandlerForMethod:@"GET"
-                         requestClass:[GCDWebServerRequest class]
-                         processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-  
-  NSMutableArray* contents = [NSMutableArray arrayWithObjects:@"<html><body><p>\n", @"Hello World!\n", @"</p></body></html>\n", nil];  // Fake data source we are reading from
-  GCDWebServerStreamedResponse* response = [GCDWebServerStreamedResponse responseWithContentType:@"text/html" asyncStreamBlock:^(GCDWebServerBodyReaderCompletionBlock completionBlock) {
-    
-    // Simulate a delay reading from the fake data source
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      NSString* string = contents.firstObject;
-      if (string) {
-        [contents removeObjectAtIndex:0];
-        completionBlock([string dataUsingEncoding:NSUTF8StringEncoding], nil);  // Generate the 2nd part of the stream data
-      } else {
-        completionBlock([NSData data], nil);  // Must pass an empty NSData to signal the end of the stream
-      }
-    });
-    
-  }];
-  return response;
-  
-}];
-```
-
-*Note that you can even combine both the asynchronous and advanced asynchronous versions to return asynchronously an asynchronous HTTP response!*
+Note that most methods on ```GCDWebServer``` to add handlers only require the ```GCDWebServerProcessBlock``` as they already provide a built-in ```GCDWebServerMatchBlock``` e.g. to match a URL path with a Regex.
 
 GCDWebServer & Background Mode for iOS Apps
 ===========================================
@@ -358,16 +267,24 @@ Fortunately, GCDWebServer does all of this automatically for you:
 
 HTTP connections are often initiated in batches (or bursts), for instance when loading a web page with multiple resources. This makes it difficult to accurately detect when the *very last* HTTP connection has been closed: it's possible 2 consecutive HTTP connections part of the same batch would be separated by a small delay instead of overlapping. It would be bad for the client if GCDWebServer suspended itself right in between. The ```GCDWebServerOption_ConnectedStateCoalescingInterval``` option solves this problem elegantly by forcing GCDWebServer to wait some extra delay before performing any action after the last HTTP connection has been closed, just in case a new HTTP connection is initiated within this delay.
 
-Logging in GCDWebServer
-=======================
+Debug Builds & Custom Logging
+=============================
 
-Both for debugging and informational purpose, GCDWebServer logs messages extensively whenever something happens. Furthermore, when building GCDWebServer in "Debug" mode versus "Release" mode, it logs even more information but also performs a number of internal consistency checks. To enable this behavior, define the preprocessor constant ```DEBUG=1``` when compiling GCDWebServer. In Xcode target settings, this can be done by adding ```DEBUG=1``` to the build setting ```GCC_PREPROCESSOR_DEFINITIONS``` when building in "Debug" configuration. Finally, you can also control the logging verbosity at run time by calling ```+[GCDWebServer setLogLevel:]```.
+When building GCDWebServer in "Debug" mode versus "Release" mode, GCDWebServer logs a lot more information and also performs a number of internal consistency checks. To disable this behavior, make sure to define the preprocessor constant ```NDEBUG``` when compiling GCDWebServer. In Xcode target settings, this can be done by adding ```NDEBUG``` to the build setting ```GCC_PREPROCESSOR_DEFINITIONS``` when building in Release configuration (this is done automatically for you if you use CocoaPods).
 
-By default, all messages logged by GCDWebServer are sent to its built-in logging facility, which simply outputs to ```stderr``` (assuming a terminal type device is connected). In order to better integrate with the rest of your app or because of the amount of information logged, you might want to use another logging facility.
+It's also possible to replace the logging system used by GCDWebServer by a custom one. Simply define the preprocessor constant ```__GCDWEBSERVER_LOGGING_HEADER__``` to the name of a header file (e.g. "MyLogging.h") that defines these macros:
 
-GCDWebServer has automatic support for [XLFacility](https://github.com/swisspol/XLFacility) (by the same author as GCDWebServer and also open-source): if it is in the same Xcode project, GCDWebServer should use it automatically instead of the built-in logging facility (see [GCDWebServerPrivate.h](GCDWebServer/Core/GCDWebServerPrivate.h) for the implementation details).
+```
+#define LOG_DEBUG(...)  // Should not do anything if NDEBUG is defined
+#define LOG_VERBOSE(...)
+#define LOG_INFO(...)
+#define LOG_WARNING(...)
+#define LOG_ERROR(...)
+#define LOG_EXCEPTION(__EXCEPTION__)
 
-It's also possible to use a custom logging facility - see [GCDWebServer.h](GCDWebServer/Core/GCDWebServer.h) for more information.
+#define DCHECK(__CONDITION__)  // Should not do anything if NDEBUG is defined or abort if __CONDITION__ is false
+#define DNOT_REACHED()  // Should not do anything if NDEBUG is defined
+```
 
 Advanced Example 1: Implementing HTTP Redirects
 ===============================================

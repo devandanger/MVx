@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,6 @@
 
 #import "GCDWebServerDataRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /**
  *  The GCDWebServerURLEncodedFormRequest subclass of GCDWebServerRequest
  *  parses the body of the HTTP request as a URL encoded form using
@@ -51,5 +49,3 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString*)mimeType;
 
 @end
-
-NS_ASSUME_NONNULL_END

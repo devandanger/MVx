@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -25,48 +25,37 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !__has_feature(objc_arc)
-#error GCDWebServer requires ARC
-#endif
-
 #import "GCDWebServerPrivate.h"
 
-@implementation GCDWebServerStreamedResponse {
-  GCDWebServerAsyncStreamBlock _block;
+@interface GCDWebServerStreamedResponse () {
+@private
+  GCDWebServerStreamingBlock _block;
+}
+@end
+
+@implementation GCDWebServerStreamedResponse
+
++ (instancetype)responseWithContentType:(NSString*)type streamBlock:(GCDWebServerStreamingBlock)block {
+  return ARC_AUTORELEASE([[[self class] alloc] initWithContentType:type streamBlock:block]);
 }
 
-@dynamic contentType;
-
-+ (instancetype)responseWithContentType:(NSString*)type streamBlock:(GCDWebServerStreamBlock)block {
-  return [[[self class] alloc] initWithContentType:type streamBlock:block];
-}
-
-+ (instancetype)responseWithContentType:(NSString*)type asyncStreamBlock:(GCDWebServerAsyncStreamBlock)block {
-  return [[[self class] alloc] initWithContentType:type asyncStreamBlock:block];
-}
-
-- (instancetype)initWithContentType:(NSString*)type streamBlock:(GCDWebServerStreamBlock)block {
-  return [self initWithContentType:type
-                  asyncStreamBlock:^(GCDWebServerBodyReaderCompletionBlock completionBlock) {
-
-                    NSError* error = nil;
-                    NSData* data = block(&error);
-                    completionBlock(data, error);
-
-                  }];
-}
-
-- (instancetype)initWithContentType:(NSString*)type asyncStreamBlock:(GCDWebServerAsyncStreamBlock)block {
+- (instancetype)initWithContentType:(NSString*)type streamBlock:(GCDWebServerStreamingBlock)block {
   if ((self = [super init])) {
     _block = [block copy];
-
+    
     self.contentType = type;
   }
   return self;
 }
 
-- (void)asyncReadDataWithCompletion:(GCDWebServerBodyReaderCompletionBlock)block {
-  _block(block);
+- (void)dealloc {
+  ARC_RELEASE(_block);
+  
+  ARC_DEALLOC(super);
+}
+
+- (NSData*)readData:(NSError**)error {
+  return _block(error);
 }
 
 - (NSString*)description {

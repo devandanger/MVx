@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RESTEasy
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -15,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        let peopleResource = TGRESTResource.newResource(withName: "people", model: [:])
+        TGRESTServer.shared()?.add(peopleResource)
+        TGRESTServer.shared()?.start(options: [:])
+        
         return true
     }
 

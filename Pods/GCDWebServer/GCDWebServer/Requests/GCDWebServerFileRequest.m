@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2012-2015, Pierre-Olivier Latour
+ Copyright (c) 2012-2014, Pierre-Olivier Latour
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
@@ -25,33 +25,37 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#if !__has_feature(objc_arc)
-#error GCDWebServer requires ARC
-#endif
-
 #import "GCDWebServerPrivate.h"
 
-@implementation GCDWebServerFileRequest {
+@interface GCDWebServerFileRequest () {
+@private
+  NSString* _temporaryPath;
   int _file;
 }
+@end
+
+@implementation GCDWebServerFileRequest
+
+@synthesize temporaryPath=_temporaryPath;
 
 - (instancetype)initWithMethod:(NSString*)method url:(NSURL*)url headers:(NSDictionary*)headers path:(NSString*)path query:(NSDictionary*)query {
   if ((self = [super initWithMethod:method url:url headers:headers path:path query:query])) {
-    _temporaryPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]];
+    _temporaryPath = ARC_RETAIN([NSTemporaryDirectory() stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]]);
   }
   return self;
 }
 
 - (void)dealloc {
   unlink([_temporaryPath fileSystemRepresentation]);
+  ARC_RELEASE(_temporaryPath);
+  
+  ARC_DEALLOC(super);
 }
 
 - (BOOL)open:(NSError**)error {
   _file = open([_temporaryPath fileSystemRepresentation], O_CREAT | O_TRUNC | O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
   if (_file <= 0) {
-    if (error) {
-      *error = GCDWebServerMakePosixError(errno);
-    }
+    *error = GCDWebServerMakePosixError(errno);
     return NO;
   }
   return YES;
@@ -59,9 +63,7 @@
 
 - (BOOL)writeData:(NSData*)data error:(NSError**)error {
   if (write(_file, data.bytes, data.length) != (ssize_t)data.length) {
-    if (error) {
-      *error = GCDWebServerMakePosixError(errno);
-    }
+    *error = GCDWebServerMakePosixError(errno);
     return NO;
   }
   return YES;
@@ -69,23 +71,21 @@
 
 - (BOOL)close:(NSError**)error {
   if (close(_file) < 0) {
-    if (error) {
-      *error = GCDWebServerMakePosixError(errno);
-    }
+    *error = GCDWebServerMakePosixError(errno);
     return NO;
   }
 #ifdef __GCDWEBSERVER_ENABLE_TESTING__
   NSString* creationDateHeader = [self.headers objectForKey:@"X-GCDWebServer-CreationDate"];
   if (creationDateHeader) {
     NSDate* date = GCDWebServerParseISO8601(creationDateHeader);
-    if (!date || ![[NSFileManager defaultManager] setAttributes:@{NSFileCreationDate : date} ofItemAtPath:_temporaryPath error:error]) {
+    if (!date || ![[NSFileManager defaultManager] setAttributes:@{NSFileCreationDate: date} ofItemAtPath:_temporaryPath error:error]) {
       return NO;
     }
   }
   NSString* modifiedDateHeader = [self.headers objectForKey:@"X-GCDWebServer-ModifiedDate"];
   if (modifiedDateHeader) {
     NSDate* date = GCDWebServerParseRFC822(modifiedDateHeader);
-    if (!date || ![[NSFileManager defaultManager] setAttributes:@{NSFileModificationDate : date} ofItemAtPath:_temporaryPath error:error]) {
+    if (!date || ![[NSFileManager defaultManager] setAttributes:@{NSFileModificationDate: date} ofItemAtPath:_temporaryPath error:error]) {
       return NO;
     }
   }
