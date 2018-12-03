@@ -24,11 +24,17 @@ extension Example {
             let vc = storyboard.instantiateViewController(withIdentifier: "Binding")
             return vc
         case .danglingSignals:
-            return DanglingSignalViewController()
+            let storyboard = UIStoryboard(name: "Dangling", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Dangling")
+            return vc
         case .cleaningUpCapturesInClosures:
-            return CaptureClosureViewController()
+            let storyboard = UIStoryboard(name: "CaptureClosure", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "CaptureClosure")
+            return vc
         case .overusingVariablesPublishSubjects:
-            return ImperativeReactiveViewController()
+            let storyboard = UIStoryboard(name: "ImperativeReactive", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ImperativeReactive")
+            return vc
         }
     }
     
