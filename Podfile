@@ -9,6 +9,7 @@ target 'MVx' do
   pod 'RxCocoa'
   pod 'ReSwift'
   pod 'RxOptional'
+  pod 'Moya/RxSwift'
   target 'MVxTests' do
     inherit! :search_paths
     # Pods for testing
