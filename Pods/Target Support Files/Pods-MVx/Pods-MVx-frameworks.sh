@@ -144,10 +144,8 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/InflectorKit/InflectorKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Harvey/Harvey.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RESTEasy/RESTEasy.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"
@@ -157,10 +155,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/InflectorKit/InflectorKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Harvey/Harvey.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/RESTEasy/RESTEasy.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework"

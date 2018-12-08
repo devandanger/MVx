@@ -1,0 +1,6 @@
+framework module Harvey {
+  umbrella header "Harvey-umbrella.h"
+
+  export *
+  module * { export * }
+}

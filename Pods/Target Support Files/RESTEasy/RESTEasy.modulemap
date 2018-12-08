@@ -1,6 +1,0 @@
-framework module RESTEasy {
-  umbrella header "RESTEasy-umbrella.h"
-
-  export *
-  module * { export * }
-}
