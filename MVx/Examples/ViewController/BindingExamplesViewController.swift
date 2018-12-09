@@ -19,7 +19,7 @@ class BindingExamplesViewController: UIViewController {
     @IBOutlet weak var loginAction: UIButton!
     let disposeBag = DisposeBag()
     
-    let viewModel = BindingExamplesViewModel(provider: MoyaProvider<PeopleApi>())
+    let viewModel = BindingExamplesViewModel(provider: MoyaProvider<ServicingApi>())
     
     override func viewDidLoad() {
         loginAction.rx.tap

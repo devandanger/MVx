@@ -15,7 +15,9 @@ class StubDataSource: HarveyDataSourceProtocol {
     }
     
     func stubbedResponse(for request: URLRequest) -> HarveyResponse? {
-        return HarveyResponse(url: URL(string: "http://localhost:8888")!, data: Data(), statusCode: 200, headers: nil)
+        let jsonEncoder = JSONEncoder()
+        let data = try! jsonEncoder.encode(LoginResponse(userAccountId: "asdfasdf"))
+        return HarveyResponse(url: URL(string: "http://localhost:8888")!, data: data, statusCode: 200, headers: nil)
     }
     
     

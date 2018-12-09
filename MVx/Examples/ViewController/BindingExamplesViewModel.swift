@@ -16,12 +16,12 @@ struct LoginRequest {
     let password: String
 }
 
-struct LoginResponse: Decodable {
+struct LoginResponse: Codable {
     let userAccountId: String
 }
 
 class BindingExamplesViewModel {
-    let provider: MoyaProvider<PeopleApi>
+    let provider: MoyaProvider<ServicingApi>
     let loginAction = PublishSubject<Void>()
     let loginText = PublishSubject<String>()
     let passwordText = PublishSubject<String>()
@@ -38,12 +38,13 @@ class BindingExamplesViewModel {
             .flatMap(self.login)
     }
     
-    init(provider theProvider: MoyaProvider<PeopleApi>) {
+    init(provider theProvider: MoyaProvider<ServicingApi>) {
         provider = theProvider
     }
     
     func login(request: LoginRequest) -> Observable<LoginResponse> {
-        return self.provider.rx.request(.people)
+        return self.provider
+            .rx.request(.login(user: request.login,password: request.password))
             .asObservable()
             .map(LoginResponse.self)
     }

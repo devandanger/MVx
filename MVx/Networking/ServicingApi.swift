@@ -9,11 +9,13 @@
 import Foundation
 import Moya
 
-enum PeopleApi {
-    case people
+enum ServicingApi {
+    case login(user: String, password: String)
+    case customer(account: String)
+    case policy(number: String)
 }
 
-extension PeopleApi: TargetType {
+extension ServicingApi: TargetType {
     var baseURL: URL {
         return URL(string: "http://localhost:8888")!
     }

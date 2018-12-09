@@ -19,7 +19,7 @@
 		20203EFC21B50E570083D700 /* ImperativeReactiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */; };
 		20203EFE21B50EE80083D700 /* CaptureClosure.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20203EFD21B50EE80083D700 /* CaptureClosure.storyboard */; };
 		20203F0021B50F2D0083D700 /* ImperativeReactive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20203EFF21B50F2D0083D700 /* ImperativeReactive.storyboard */; };
-		20203F0321B513C50083D700 /* PeopleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203F0221B513C50083D700 /* PeopleApi.swift */; };
+		20203F0321B513C50083D700 /* ServicingApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203F0221B513C50083D700 /* ServicingApi.swift */; };
 		20203F1A21BBE7B10083D700 /* StubDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20203F1921BBE7B10083D700 /* StubDataSource.swift */; };
 		202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503B21B41B9800483DCA /* AppDelegate.swift */; };
 		202D503E21B41B9800483DCA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D503D21B41B9800483DCA /* MasterViewController.swift */; };
@@ -65,7 +65,7 @@
 		20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperativeReactiveViewModel.swift; sourceTree = "<group>"; };
 		20203EFD21B50EE80083D700 /* CaptureClosure.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CaptureClosure.storyboard; sourceTree = "<group>"; };
 		20203EFF21B50F2D0083D700 /* ImperativeReactive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImperativeReactive.storyboard; sourceTree = "<group>"; };
-		20203F0221B513C50083D700 /* PeopleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleApi.swift; sourceTree = "<group>"; };
+		20203F0221B513C50083D700 /* ServicingApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicingApi.swift; sourceTree = "<group>"; };
 		20203F1921BBE7B10083D700 /* StubDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDataSource.swift; sourceTree = "<group>"; };
 		202D503821B41B9800483DCA /* MVx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202D503B21B41B9800483DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				20203F1821BBE7840083D700 /* Stubbing */,
-				20203F0221B513C50083D700 /* PeopleApi.swift */,
+				20203F0221B513C50083D700 /* ServicingApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 				200FA23021B4FDB7007975E0 /* CaptureClosureViewController.swift in Sources */,
 				202D506D21B41D9900483DCA /* ExampleDirectory.swift in Sources */,
 				20203EFC21B50E570083D700 /* ImperativeReactiveViewModel.swift in Sources */,
-				20203F0321B513C50083D700 /* PeopleApi.swift in Sources */,
+				20203F0321B513C50083D700 /* ServicingApi.swift in Sources */,
 				20203F1A21BBE7B10083D700 /* StubDataSource.swift in Sources */,
 				202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */,
 				20203EF621B50E300083D700 /* BindingExamplesViewModel.swift in Sources */,
