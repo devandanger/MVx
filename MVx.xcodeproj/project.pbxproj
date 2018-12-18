@@ -31,6 +31,18 @@
 		202D506D21B41D9900483DCA /* ExampleDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202D506C21B41D9900483DCA /* ExampleDirectory.swift */; };
 		5FB76B6B947F285E639ABFCA /* Pods_MVx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47FCE7304688407096CCB51F /* Pods_MVx.framework */; };
 		7A93B5F05A41D838F7AB4724 /* Pods_MVxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A5FD5E243526C0C51FBA71 /* Pods_MVxTests.framework */; };
+		9705E82321C997900062C099 /* DontCaptureClosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E81B21C9978F0062C099 /* DontCaptureClosureViewController.swift */; };
+		9705E82421C997900062C099 /* DontDanglingSignalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E81C21C9978F0062C099 /* DontDanglingSignalViewController.swift */; };
+		9705E82521C997900062C099 /* DontImperativeReactiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E81D21C9978F0062C099 /* DontImperativeReactiveViewController.swift */; };
+		9705E82621C997900062C099 /* DontImperativeReactiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E81E21C9978F0062C099 /* DontImperativeReactiveViewModel.swift */; };
+		9705E82721C997900062C099 /* DontBindingExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E81F21C9978F0062C099 /* DontBindingExamplesViewController.swift */; };
+		9705E82821C997900062C099 /* DontBindingExamplesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E82021C9978F0062C099 /* DontBindingExamplesViewModel.swift */; };
+		9705E82921C997900062C099 /* DontCaptureClosureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E82121C9978F0062C099 /* DontCaptureClosureViewModel.swift */; };
+		9705E82A21C997900062C099 /* DontDanglingSignalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E82221C997900062C099 /* DontDanglingSignalViewModel.swift */; };
+		9705E82D21C997C10062C099 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E82C21C997C10062C099 /* Login.swift */; };
+		9705E82F21C9989A0062C099 /* DealingWithTime.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9705E82E21C9989A0062C099 /* DealingWithTime.storyboard */; };
+		9705E83121C998FB0062C099 /* DealingWithTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E83021C998FB0062C099 /* DealingWithTimeViewController.swift */; };
+		9705E83321C999160062C099 /* DealingWithTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705E83221C999160062C099 /* DealingWithTimeViewModel.swift */; };
 		D135ACF5CD93B20EF9AB1B36 /* Pods_MVxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73B4E7339AF4A5101D5476DB /* Pods_MVxUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +96,18 @@
 		2D93F5B826541E3BF59505D6 /* Pods-MVxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVxUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVxUITests/Pods-MVxUITests.release.xcconfig"; sourceTree = "<group>"; };
 		47FCE7304688407096CCB51F /* Pods_MVx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73B4E7339AF4A5101D5476DB /* Pods_MVxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9705E81B21C9978F0062C099 /* DontCaptureClosureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontCaptureClosureViewController.swift; sourceTree = "<group>"; };
+		9705E81C21C9978F0062C099 /* DontDanglingSignalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontDanglingSignalViewController.swift; sourceTree = "<group>"; };
+		9705E81D21C9978F0062C099 /* DontImperativeReactiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontImperativeReactiveViewController.swift; sourceTree = "<group>"; };
+		9705E81E21C9978F0062C099 /* DontImperativeReactiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontImperativeReactiveViewModel.swift; sourceTree = "<group>"; };
+		9705E81F21C9978F0062C099 /* DontBindingExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontBindingExamplesViewController.swift; sourceTree = "<group>"; };
+		9705E82021C9978F0062C099 /* DontBindingExamplesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontBindingExamplesViewModel.swift; sourceTree = "<group>"; };
+		9705E82121C9978F0062C099 /* DontCaptureClosureViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontCaptureClosureViewModel.swift; sourceTree = "<group>"; };
+		9705E82221C997900062C099 /* DontDanglingSignalViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DontDanglingSignalViewModel.swift; sourceTree = "<group>"; };
+		9705E82C21C997C10062C099 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		9705E82E21C9989A0062C099 /* DealingWithTime.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DealingWithTime.storyboard; sourceTree = "<group>"; };
+		9705E83021C998FB0062C099 /* DealingWithTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealingWithTimeViewController.swift; sourceTree = "<group>"; };
+		9705E83221C999160062C099 /* DealingWithTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealingWithTimeViewModel.swift; sourceTree = "<group>"; };
 		98C0AD395B198AD849A6D719 /* Pods-MVx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVx.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVx/Pods-MVx.release.xcconfig"; sourceTree = "<group>"; };
 		C4FE945B20200D8442FE1D48 /* Pods-MVxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVxTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVxTests/Pods-MVxTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED4167AF86161E819118D293 /* Pods-MVxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVxTests/Pods-MVxTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +159,7 @@
 		200FA22921B4FCE3007975E0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9705E81A21C9904C0062C099 /* DONT */,
 				200FA22B21B4FD52007975E0 /* BindingExamplesViewController.swift */,
 				20203EF521B50E300083D700 /* BindingExamplesViewModel.swift */,
 				200FA22F21B4FDB7007975E0 /* CaptureClosureViewController.swift */,
@@ -143,6 +168,8 @@
 				20203EF721B50E3F0083D700 /* DanglingSignalViewModel.swift */,
 				200FA23121B4FDE4007975E0 /* ImperativeReactiveViewController.swift */,
 				20203EFB21B50E570083D700 /* ImperativeReactiveViewModel.swift */,
+				9705E83021C998FB0062C099 /* DealingWithTimeViewController.swift */,
+				9705E83221C999160062C099 /* DealingWithTimeViewModel.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -155,6 +182,7 @@
 				200FA23621B5062F007975E0 /* Dangling.storyboard */,
 				20203EFD21B50EE80083D700 /* CaptureClosure.storyboard */,
 				20203EFF21B50F2D0083D700 /* ImperativeReactive.storyboard */,
+				9705E82E21C9989A0062C099 /* DealingWithTime.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -162,6 +190,7 @@
 		20203F0121B513B60083D700 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9705E82B21C997B50062C099 /* Models */,
 				20203F1821BBE7840083D700 /* Stubbing */,
 				20203F0221B513C50083D700 /* ServicingApi.swift */,
 			);
@@ -246,6 +275,29 @@
 				200FA22921B4FCE3007975E0 /* ViewController */,
 			);
 			path = Examples;
+			sourceTree = "<group>";
+		};
+		9705E81A21C9904C0062C099 /* DONT */ = {
+			isa = PBXGroup;
+			children = (
+				9705E81F21C9978F0062C099 /* DontBindingExamplesViewController.swift */,
+				9705E82021C9978F0062C099 /* DontBindingExamplesViewModel.swift */,
+				9705E81B21C9978F0062C099 /* DontCaptureClosureViewController.swift */,
+				9705E82121C9978F0062C099 /* DontCaptureClosureViewModel.swift */,
+				9705E81C21C9978F0062C099 /* DontDanglingSignalViewController.swift */,
+				9705E82221C997900062C099 /* DontDanglingSignalViewModel.swift */,
+				9705E81D21C9978F0062C099 /* DontImperativeReactiveViewController.swift */,
+				9705E81E21C9978F0062C099 /* DontImperativeReactiveViewModel.swift */,
+			);
+			path = DONT;
+			sourceTree = "<group>";
+		};
+		9705E82B21C997B50062C099 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9705E82C21C997C10062C099 /* Login.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C27BD358702535EF2E3DD73A /* Frameworks */ = {
@@ -366,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9705E82F21C9989A0062C099 /* DealingWithTime.storyboard in Resources */,
 				20203F0021B50F2D0083D700 /* ImperativeReactive.storyboard in Resources */,
 				200FA23521B502C4007975E0 /* Binding.storyboard in Resources */,
 				202D504821B41B9A00483DCA /* LaunchScreen.storyboard in Resources */,
@@ -488,19 +541,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9705E82721C997900062C099 /* DontBindingExamplesViewController.swift in Sources */,
 				200FA22E21B4FD91007975E0 /* DanglingSignalViewController.swift in Sources */,
+				9705E82621C997900062C099 /* DontImperativeReactiveViewModel.swift in Sources */,
 				20203EFA21B50E4C0083D700 /* CaptureClosureViewModel.swift in Sources */,
+				9705E82521C997900062C099 /* DontImperativeReactiveViewController.swift in Sources */,
 				200FA23221B4FDE4007975E0 /* ImperativeReactiveViewController.swift in Sources */,
+				9705E82921C997900062C099 /* DontCaptureClosureViewModel.swift in Sources */,
 				200FA22C21B4FD52007975E0 /* BindingExamplesViewController.swift in Sources */,
+				9705E83121C998FB0062C099 /* DealingWithTimeViewController.swift in Sources */,
 				202D503E21B41B9800483DCA /* MasterViewController.swift in Sources */,
+				9705E82D21C997C10062C099 /* Login.swift in Sources */,
 				20203EF821B50E3F0083D700 /* DanglingSignalViewModel.swift in Sources */,
 				200FA23021B4FDB7007975E0 /* CaptureClosureViewController.swift in Sources */,
+				9705E82821C997900062C099 /* DontBindingExamplesViewModel.swift in Sources */,
 				202D506D21B41D9900483DCA /* ExampleDirectory.swift in Sources */,
+				9705E82321C997900062C099 /* DontCaptureClosureViewController.swift in Sources */,
 				20203EFC21B50E570083D700 /* ImperativeReactiveViewModel.swift in Sources */,
 				20203F0321B513C50083D700 /* ServicingApi.swift in Sources */,
+				9705E82A21C997900062C099 /* DontDanglingSignalViewModel.swift in Sources */,
 				20203F1A21BBE7B10083D700 /* StubDataSource.swift in Sources */,
+				9705E83321C999160062C099 /* DealingWithTimeViewModel.swift in Sources */,
 				202D503C21B41B9800483DCA /* AppDelegate.swift in Sources */,
 				20203EF621B50E300083D700 /* BindingExamplesViewModel.swift in Sources */,
+				9705E82421C997900062C099 /* DontDanglingSignalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

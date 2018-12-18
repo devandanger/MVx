@@ -14,6 +14,7 @@ enum Example: CaseIterable {
     case danglingSignals
     case cleaningUpCapturesInClosures
     case overusingVariablesPublishSubjects
+    case dealingWithTime
 }
 
 extension Example {
@@ -35,6 +36,10 @@ extension Example {
             let storyboard = UIStoryboard(name: "ImperativeReactive", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ImperativeReactive")
             return vc
+        case .dealingWithTime:
+            let storyboard = UIStoryboard(name: "DealingWithTime", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "DealingWithTime")
+            return vc
         }
     }
     
@@ -48,6 +53,9 @@ extension Example {
             return "How to handle captures in closures as well as how to get rid of them."
         case .overusingVariablesPublishSubjects:
             return "Example of how overusing variables can break the reactive nature of your code."
+
+        case .dealingWithTime:
+            return "Example of how to dealing with time."
         }
     }
 }

@@ -11,7 +11,7 @@ import Moya
 import RxCocoa
 import RxSwift
 
-class BindingExamplesViewModel {
+class DontBindingExamplesViewModel {
     let provider: MoyaProvider<ServicingApi>
     let loginAction = PublishSubject<Void>()
     let loginText = PublishSubject<String>()
