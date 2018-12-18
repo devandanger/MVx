@@ -8,6 +8,7 @@
 
 import Foundation
 
+//TODO Donnie
 class CaptureClosureViewModel {
     
 }

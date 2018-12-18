@@ -13,12 +13,10 @@ class StubDataSource: HarveyDataSourceProtocol {
     func shouldStub(request: URLRequest) -> Bool {
         return true
     }
-    
+
     func stubbedResponse(for request: URLRequest) -> HarveyResponse? {
         let jsonEncoder = JSONEncoder()
         let data = try! jsonEncoder.encode(LoginResponse(userAccountId: "asdfasdf"))
         return HarveyResponse(url: URL(string: "http://localhost:8888")!, data: data, statusCode: 200, headers: nil)
     }
-    
-    
 }

@@ -11,6 +11,7 @@ import Moya
 import RxCocoa
 import RxSwift
 
+//TODO Nate
 class BindingExamplesViewModel {
     let provider: MoyaProvider<ServicingApi>
     let loginAction = PublishSubject<Void>()

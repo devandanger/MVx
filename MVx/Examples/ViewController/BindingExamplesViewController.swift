@@ -13,6 +13,7 @@ import RxCocoa
 import RxOptional
 import RxSwift
 
+//TODO Nate
 class BindingExamplesViewController: UIViewController {
     @IBOutlet weak var loginText: UITextField!
     @IBOutlet weak var passwordText: UITextField!

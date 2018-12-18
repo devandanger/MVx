@@ -8,6 +8,7 @@
 
 import Foundation
 
+//TODO Patty/Meenu/Evan
 class DanglingSignalViewModel {
     
 }
